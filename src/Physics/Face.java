@@ -45,10 +45,10 @@ public class Face {
     }
     
     public float getWidth(){
-        return (p2.getX()-p1.getX());
+        return DistanceCalculator.CalculateXYZDifferenceF(p1, p2);
     }
     public float getHeight(){
-        return -(p1.getY()-p3.getY());
+        return DistanceCalculator.CalculateXYZDifferenceF(p1, p3);
     }
     
     public Point getCenter(){

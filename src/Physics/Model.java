@@ -225,7 +225,16 @@ public class Model {
         if(true){
             if (this.textures != null) {
                 for (int i = 0; i < this.faces.length / 2; i++) {
-                    g.drawImage(textures, (int) this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2, (int) this.getScaledFace(i*2).getWidth() + 1, (int) this.getScaledFace(i*2).getHeight() + 1, null);
+                    //rotate the image, then translate it
+                    Graphics2D g2d = ((Graphics2D)g);
+                            //(int) this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2,
+                    
+                    g.translate((int) this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
+                    g2d.rotate(Math.toRadians(this.AbsoluteAnlgeY));
+                    g.drawImage(textures, 0,0, (int) this.getScaledFace(i*2).getWidth() + 1, (int) this.getScaledFace(i*2).getHeight() + 1, null);
+                    g2d.rotate(Math.toRadians(-this.AbsoluteAnlgeY));
+                    g.translate(-(int)( this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX()), -(int) (this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2));
+                    
                 }
                 if(Handler.bool1){
                     for (int i = 0; i < this.faces.length; i++) {

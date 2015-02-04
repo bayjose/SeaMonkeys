@@ -129,10 +129,10 @@ public class Game extends Canvas implements Runnable{
     }
     
     public static void main(String[] args) {
-//        new Window(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height, "The Game", new Game());
-        Window window = new Window(1200, 900, "Engine", new Game());
+    //        new Window(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height, "The Game", new Game());
+        new Window(1200, 800, "ide 3D", new Game());
         System.out.println("Size:("+Toolkit.getDefaultToolkit().getScreenSize().width+","+Toolkit.getDefaultToolkit().getScreenSize().height+")");
-        System.out.println("Width:"+Game.WIDTH+" Height:"+Game.HEIGHT);
+        System.out.println("Width:"+Game.WIDTH+" Height:"+Game.HEIGHT);    
     }
     
 }
