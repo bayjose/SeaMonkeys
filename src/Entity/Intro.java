@@ -35,14 +35,23 @@ public class Intro extends Entity{
     }
 
     public void update() {
-        this.models.get(1).RotateYOnlyPoints(1);
-        if(this.curTicks>=this.maxTicks){
-            this.remove = true;
-            handler.egs = EnumGameState.Main;
+        if(Handler.bool2){
+            this.models.get(1).RotateYOnlyPoints(1);
         }
-        if(this.curTicks<this.maxTicks){
-            this.curTicks++;
+        if(Handler.bool3){
+            this.models.get(1).RotateXOnlyPoints(1);
         }
+        if(Handler.bool4){
+            this.models.get(1).RotateZOnlyPoints(1);
+        }
+        
+//        if(this.curTicks>=this.maxTicks){
+//            this.remove = true;
+//            handler.egs = EnumGameState.Main;
+//        }
+//        if(this.curTicks<this.maxTicks){
+//            this.curTicks++;
+//        }
     }
     
     protected void render(Graphics g) {

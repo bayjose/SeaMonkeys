@@ -242,6 +242,8 @@ public class Model {
                         Polygon p = this.getScaledFace(i).returnJavaPolygon();
                         p.translate((int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
                         g.drawPolygon(p);
+                        Face tempFace = this.getScaledFace(i);
+                        g.drawString("Area"+tempFace.getArea()+" AreaX:"+tempFace.getAreaX()+" AreaY:"+tempFace.getAreaY(), (int)(tempFace.getX()+Camera.globalOffset.getX()), (int)(tempFace.getY()+Camera.globalOffset.getY()));
                     }
                 }
             } else {

@@ -43,7 +43,7 @@ public class ModelTester extends Entity{
          if(Handler.bool6){
             Entity tile = new Tile(Models.generateQuad(new Vector3D(128, 128, 0), 32));
             tile.getModel().assignImageFromSpriteBinder(SpriteBinder.resources.getImage((int)(Math.random()*16), (int)(Math.random()*16)));
-            tile.gravity = GravityHandler.Down;
+            tile.gravity = GravityHandler.None;
             tile.vecForward = new Vector3D(5, (float) -(15+(Math.sin(Math.toRadians(this.sin))*5)), 6);
             handler.entities.add(tile);
         }

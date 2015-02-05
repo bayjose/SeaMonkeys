@@ -33,14 +33,14 @@ public class DistanceCalculator {
         double y1 = y ;
         double x2 = 0;
         double y2 = yy;
-        return (int)((x1-x2)+(y1-y2));
+        return (int)((y1-y2));
     }
     public static int CalculateXDifference(int x, int xx){
         double x1 = x ;
         double y1 = 0 ;
         double x2 = xx;
         double y2 = 0;
-        return (int)((x1-x2)+(y1-y2));
+        return (int)((x1-x2));
     }
     public static float CalculateYDifferenceF(float y, float yy){
         float x1 = 0 ;

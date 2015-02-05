@@ -37,6 +37,20 @@ public class Face {
         return new Polygon(xpts, ypts, tempPts.length);
     }
     
+    public float getArea(){
+        float answer1 = ((p1.getX()*p2.getY())+(p2.getX()+p3.getY()));
+        float answer2 = ((p1.getY()*p2.getX())+(p2.getY()+p3.getX()));
+        return answer1-answer2;
+    }
+    public float getAreaX(){
+        float answer1 = ((p1.getX()*p2.getY())+(p2.getX()+p3.getY()));
+        return answer1;
+    }
+    public float getAreaY(){
+        float answer2 = ((p1.getY()*p2.getX())+(p2.getY()+p3.getX()));
+        return answer2;
+    }
+    
     public float getX(){
         return this.p1.getX();
     }
@@ -45,10 +59,13 @@ public class Face {
     }
     
     public float getWidth(){
-        return DistanceCalculator.CalculateXYZDifferenceF(p1, p2);
+        if(this.getAreaX()<0){
+            return -DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+        }
+        return DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
     public float getHeight(){
-        return DistanceCalculator.CalculateXYZDifferenceF(p1, p3);
+        return DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p3.getX(), p3.getY());
     }
     
     public Point getCenter(){
