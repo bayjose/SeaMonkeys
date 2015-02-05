@@ -19,11 +19,18 @@ public class Face {
     private final Point p1;
     private final Point p2;
     private final Point p3;
+    private final double rotX;
+    private final double rotY;
+    private final double rotZ;
     
-    public Face(Point p1, Point p2, Point p3){
+    
+    public Face(Point p1, Point p2, Point p3, double rotX, double rotY, double rotZ){
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
+        this.rotX = rotX%360;
+        this.rotY = rotY%360;
+        this.rotZ = rotZ%360;
     }
     
     public Polygon returnJavaPolygon(){
@@ -59,13 +66,18 @@ public class Face {
     }
     
     public float getWidth(){
-        if(this.getAreaX()<0){
+        if(rotX>90&&rotX<270){
             return -DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+        }else{
+            return DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p2.getX(), p2.getY());
         }
-        return DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p2.getX(), p2.getY());
     }
     public float getHeight(){
-        return DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p3.getX(), p3.getY());
+        if(rotZ>90&&rotZ<270){
+            return -DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p3.getX(), p3.getY());
+        }else{
+            return DistanceCalculator.CalculateDistanceF(p1.getX(), p1.getY(), p3.getX(), p3.getY());
+        }
     }
     
     public Point getCenter(){

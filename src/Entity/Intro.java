@@ -30,7 +30,11 @@ public class Intro extends Entity{
         model.offset.increaseVelX(Game.WIDTH/2);
         Model gear = Models.generateQuad(new Vector3D(Game.WIDTH/2, 0, Handler.cam.optimalRender), 128);
         gear.assignTexture("Gear.jpg");
+        Model Wall1 = Models.generateQuad(new Vector3D(64, 0, Handler.cam.optimalRender), 128, Game.HEIGHT);
+        Wall1.RotateXOnlyPoints( 45);
+        gear.assignTexture("Gear.jpg");
         this.models.add(gear);
+        this.models.add(Wall1);
         this.handler = handler;
     }
 

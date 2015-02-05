@@ -243,7 +243,6 @@ public class Model {
                         p.translate((int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
                         g.drawPolygon(p);
                         Face tempFace = this.getScaledFace(i);
-                        g.drawString("Area"+tempFace.getArea()+" AreaX:"+tempFace.getAreaX()+" AreaY:"+tempFace.getAreaY(), (int)(tempFace.getX()+Camera.globalOffset.getX()), (int)(tempFace.getY()+Camera.globalOffset.getY()));
                     }
                 }
             } else {
@@ -274,13 +273,13 @@ public class Model {
         pt1.setScale(scale);
         pt2.setScale(scale);
         pt3.setScale(scale);
-        Face temp = new Face(pt1, pt2, pt3);
+        Face temp = new Face(pt1, pt2, pt3, this.AbsoluteAnlgeX, this.AbsoluteAnlgeY, this.AbsoluteAnlgeZ);
         return temp;
     }
     
     public void update(){
         for(int i=0; i<this.faces.length; i++){
-            this.faces[i] = new Face(indicies[verticies[(i*3)+0]],indicies[verticies[(i*3)+1]],indicies[verticies[(i*3)+2]]);
+            this.faces[i] = new Face(indicies[verticies[(i*3)+0]],indicies[verticies[(i*3)+1]],indicies[verticies[(i*3)+2]], this.AbsoluteAnlgeX, this.AbsoluteAnlgeY, this.AbsoluteAnlgeZ);
         }
     }
     
