@@ -55,9 +55,6 @@ public class Handler {
         //load sprite sheets
         this.renderModels = new RenderModels();
         this.intro = new Intro(Models.generateQuad(new Vector3D(0,0,cam.optimalRender), Game.WIDTH, Game.HEIGHT),this);
-        Model temp =Models.generateCube(new Vector3D(100, 100, 128), 128, 1, 1,1 );
-        temp.assignTexture("tree.png");
-        this.entities.add(new ModelTester(temp,this));
     }
     
     public void tick(){

@@ -22,40 +22,27 @@ public class Intro extends Entity{
     private Handler handler;
 
     private int curTicks = 0;
-    private final int maxTicks = 600;
+    private final int maxTicks = 90;
     
     public Intro(Model model, Handler handler) {
         super(model);
-        model.assignImageFromSpriteBinder(SpriteBinder.resources.getImage(1, 5));
+        model.assignTexture("into.png");
         model.offset.increaseVelX(Game.WIDTH/2);
         Model gear = Models.generateQuad(new Vector3D(Game.WIDTH/2, 0, Handler.cam.optimalRender), 128);
-        gear.assignTexture("Gear.jpg");
-        Model Wall1 = Models.generateQuad(new Vector3D(64, 0, Handler.cam.optimalRender), 128, Game.HEIGHT);
-        Wall1.RotateXOnlyPoints( 45);
-        gear.assignTexture("Gear.jpg");
+        gear.assignTexture("Gear.png");
         this.models.add(gear);
-        this.models.add(Wall1);
         this.handler = handler;
     }
 
     public void update() {
-        if(Handler.bool2){
-            this.models.get(1).RotateYOnlyPoints(1);
+        this.models.get(1).RotateYOnlyPoints(2.4);
+        if(this.curTicks>=this.maxTicks){
+            this.remove = true;
+            handler.egs = EnumGameState.Main;
         }
-        if(Handler.bool3){
-            this.models.get(1).RotateXOnlyPoints(1);
+        if(this.curTicks<this.maxTicks){
+            this.curTicks++;
         }
-        if(Handler.bool4){
-            this.models.get(1).RotateZOnlyPoints(1);
-        }
-        
-//        if(this.curTicks>=this.maxTicks){
-//            this.remove = true;
-//            handler.egs = EnumGameState.Main;
-//        }
-//        if(this.curTicks<this.maxTicks){
-//            this.curTicks++;
-//        }
     }
     
     protected void render(Graphics g) {
