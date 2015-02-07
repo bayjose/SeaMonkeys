@@ -34,7 +34,7 @@ public class Intro extends Entity{
     }
 
     public void update() {
-        this.models.get(1).RotateYOnlyPoints(2.4);
+        this.models.get(1).RotateYOnlyPoints(0.25F);
         if(this.curTicks>=this.maxTicks){
             this.remove = true;
             handler.egs = EnumGameState.Main;
@@ -42,6 +42,7 @@ public class Intro extends Entity{
         if(this.curTicks<this.maxTicks){
             this.curTicks++;
         }
+//        System.out.println("Model 1: "+this.models.get(1).Distance+" Scale:"+this.models.get(1).Scale+" Position:"+this.models.get(1).offset.getZ());
     }
     
     protected void render(Graphics g) {

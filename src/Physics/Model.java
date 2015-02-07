@@ -45,6 +45,7 @@ public class Model {
     
     //distance to camera
     public float Distance = 0.0F;
+    public float Scale = 0.0f;
     
     //extra fields for rendering the model
     private boolean debug = false;
@@ -273,14 +274,15 @@ public class Model {
     
     //this is the perfect code for being able to move the cam, passed to the shader-ish class 
     public Face getScaledFace(int index){
-        Point pt1 = this.faces[index].getPoint1();
-        Point pt2 = this.faces[index].getPoint2();
-        Point pt3 = this.faces[index].getPoint3();
+        Point pt1 = new Point3D(faces[index].getPoint1().getX(), faces[index].getPoint1().getY(), faces[index].getPoint1().getZ());
+        Point pt2 = new Point3D(faces[index].getPoint2().getX(), faces[index].getPoint2().getY(), faces[index].getPoint2().getZ());
+        Point pt3 = new Point3D(faces[index].getPoint3().getX(), faces[index].getPoint3().getY(), faces[index].getPoint3().getZ());
+//        this.Distance = DistanceCalculator.CalculateXDifferenceF(this.offset.getZ(), Handler.cam.position.getZ());
         float scale = (DistanceCalculator.CalculateXDifferenceF(this.offset.getZ()+Camera.globalOffset.getZ(), Handler.cam.position.getZ()+Camera.globalOffset.getZ())+Handler.cam.viewRange)/(Handler.cam.optimalRender+Handler.cam.viewRange);
+        this.Scale = scale;
         pt1.setScale(scale);
         pt2.setScale(scale);
         pt3.setScale(scale);
-        System.out.println("Distacne:"+scale);
         if(scale>=0){
             Face temp = new Face(pt1, pt2, pt3, this.AbsoluteAnlgeX, this.AbsoluteAnlgeY, this.AbsoluteAnlgeZ);
             return temp;
