@@ -6,6 +6,7 @@
 
 package Base;
 
+import Base.input.KeyInput;
 import Physics.Vector3D;
 import java.awt.Rectangle;
 
@@ -17,7 +18,7 @@ public class Camera {
     public int zoom=1;
     public Rectangle WindowSize;
     private Handler handler;
-    public static Vector3D globalOffset = new Vector3D(0,0,0);
+    public static Vector3D globalOffset = new Vector3D(0,0,128);
     
     
     public Vector3D position;
@@ -36,7 +37,14 @@ public class Camera {
     }
     
     public void tick(){
-        
+        if(KeyInput.W){
+            this.position.increaseVelZ(-5);
+            System.out.println(this.position.getZ());
+        }
+        if(KeyInput.S){
+            this.position.increaseVelZ(5);
+            System.out.println(this.position.getZ());
+        }
     }
     
     public int getZoom(){

@@ -228,32 +228,39 @@ public class Model {
                     //rotate the image, then translate it
                     Graphics2D g2d = ((Graphics2D)g);
                             //(int) this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2,
-                    
-                    g.translate((int) this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
-                    g2d.rotate(Math.toRadians(this.AbsoluteAnlgeY));
-                    g.drawImage(textures, 0,0, (int) this.getScaledFace(i*2).getWidth() + 1, (int) this.getScaledFace(i*2).getHeight() + 1, null);
-                    g2d.rotate(Math.toRadians(-this.AbsoluteAnlgeY));
-                    g.translate(-(int)( this.getScaledFace(i*2).getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX()), -(int) (this.getScaledFace(i*2).getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2));
+                    Face tempFace = this.getScaledFace(i*2);
+                    if(tempFace!=null){
+                        g.translate((int) tempFace.getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) tempFace.getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
+                        g2d.rotate(Math.toRadians(this.AbsoluteAnlgeY));
+                        g.drawImage(textures, 0,0, (int) tempFace.getWidth() + 1, (int) tempFace.getHeight() + 1, null);
+                        g2d.rotate(Math.toRadians(-this.AbsoluteAnlgeY));
+                        g.translate(-(int)( tempFace.getX() + (int) this.offset.getX() + (int)Camera.globalOffset.getX()), -(int) (tempFace.getY() + (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2));
+                    }
                     
                 }
                 if(Handler.bool1){
                     for (int i = 0; i < this.faces.length; i++) {
-                        g.setColor(this.colors[this.colorIndex[i]]);
-                        Polygon p = this.getScaledFace(i).returnJavaPolygon();
-                        p.translate((int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
-                        g.drawPolygon(p);
                         Face tempFace = this.getScaledFace(i);
+                        if(tempFace!=null){
+                            g.setColor(this.colors[this.colorIndex[i]]);
+                            Polygon p = tempFace.returnJavaPolygon();
+                            p.translate((int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
+                            g.drawPolygon(p);
+                        }
                     }
                 }
             } else {
                 for (int i = 0; i < this.faces.length; i++) {
-                    g.setColor(this.colors[this.colorIndex[i]]);
-                    Polygon p = this.getScaledFace(i).returnJavaPolygon();
-                    p.translate((int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
-                    if(!Handler.bool1){
-                        g.fillPolygon(p);
-                    }else{
-                        g.drawPolygon(p);
+                    Face tempFace = this.getScaledFace(i);
+                    if(tempFace!=null){
+                        g.setColor(this.colors[this.colorIndex[i]]);
+                        Polygon p = tempFace.returnJavaPolygon();
+                        p.translate((int) this.offset.getX() + (int)Camera.globalOffset.getX(), (int) this.offset.getY()+ (int)Camera.globalOffset.getY() + Game.HEIGHT / 2);
+                        if(!Handler.bool1){
+                            g.fillPolygon(p);
+                        }else{
+                            g.drawPolygon(p);
+                        }
                     }
                 }
             }
@@ -273,8 +280,13 @@ public class Model {
         pt1.setScale(scale);
         pt2.setScale(scale);
         pt3.setScale(scale);
-        Face temp = new Face(pt1, pt2, pt3, this.AbsoluteAnlgeX, this.AbsoluteAnlgeY, this.AbsoluteAnlgeZ);
-        return temp;
+        System.out.println("Distacne:"+scale);
+        if(scale>=0){
+            Face temp = new Face(pt1, pt2, pt3, this.AbsoluteAnlgeX, this.AbsoluteAnlgeY, this.AbsoluteAnlgeZ);
+            return temp;
+        }else{
+            return null;
+        }
     }
     
     public void update(){

@@ -59,6 +59,7 @@ public class Handler {
     
     public void tick(){
         //process all particles
+        Handler.cam.tick();
         if(egs.equals(EnumGameState.Intro)){
             this.intro.tick();
         }

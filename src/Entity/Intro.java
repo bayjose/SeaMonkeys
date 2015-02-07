@@ -7,7 +7,6 @@ package Entity;
 
 import Base.Game;
 import Base.Handler;
-import Base.SpriteBinder;
 import Base.util.EnumGameState;
 import Physics.Model;
 import Physics.Vector3D;
@@ -22,7 +21,7 @@ public class Intro extends Entity{
     private Handler handler;
 
     private int curTicks = 0;
-    private final int maxTicks = 90;
+    private final int maxTicks = 600000;
     
     public Intro(Model model, Handler handler) {
         super(model);
