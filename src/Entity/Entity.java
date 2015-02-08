@@ -11,6 +11,7 @@ import Physics.GravityHandler;
 import Physics.Model;
 import Physics.Vector3D;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 
 /**
@@ -33,14 +34,13 @@ public abstract class Entity {
     
     public void tick(){
         //gravity and movement
-        if(Handler.bool6){
-            this.vecForward.increaseVelX(this.gravity.getGravity().getX());
-            this.vecForward.increaseVelY(this.gravity.getGravity().getY());
-            this.vecForward.increaseVelZ(this.gravity.getGravity().getZ());
-            this.traslateAllX(this.vecForward.getX());
-            this.translateAllYWithRespectToAngle(this.vecForward.getY());
-            this.translateAllZWithRespectToAngle(this.vecForward.getZ());
-        }
+        this.vecForward.increaseVelX(this.gravity.getGravity().getX());
+        this.vecForward.increaseVelY(this.gravity.getGravity().getY());
+        this.vecForward.increaseVelZ(this.gravity.getGravity().getZ());
+        this.traslateAllX(this.vecForward.getX());
+        this.translateAllYWithRespectToAngle(this.vecForward.getY());
+        this.translateAllZWithRespectToAngle(this.vecForward.getZ());
+
         this.update();
     }
     
@@ -54,6 +54,7 @@ public abstract class Entity {
     public abstract void update();
     protected abstract void render(Graphics g);
     public abstract void dead();
+    public abstract void checkForIntersection(Entity entity);
 //    public abstract void collision(Entity i, Entity j);
     
     public void CheckForDead(){

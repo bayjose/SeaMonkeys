@@ -35,7 +35,8 @@ public class MousePositionLocator implements MouseMotionListener{
             MouseLocation.x=(e.getX()/this.handler.cam.zoom);
             MouseLocation.y=(e.getY()/this.handler.cam.zoom);
         }
-       
+        MouseInput.collision.getModel().offset.setVelX(e.getX());
+        MouseInput.collision.getModel().offset.setVelY(e.getY());
 //        model.point.setY(MouseLocation.y-(Handler.cam.WindowSize.height/2));
 //        model.update();
     }

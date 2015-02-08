@@ -135,6 +135,31 @@ public class Models {
         cube.assignRenderType(EnumRenderType.QUAD);
         return cube;
     }
+    public static Model generateQuadCenterdAtBottom(Vector3D point, float x, float y){
+        Model cube = new Model(point,
+        new Point[]{
+            new Point3D(-x/2, -y, 0),
+            new Point3D(x/2, -y, 0),
+            new Point3D(-x/2, 0, 0),
+            new Point3D(x/2, 0, 0),
+        },
+        new int[]{ //faces
+            0,1,2,
+            3,2,1
+        },
+        new Color[]{
+            Color.decode("#"+Models.RandCol()+ Models.RandCol()+Models.RandCol()+Models.RandCol()+Models.RandCol()+Models.RandCol()),
+            Color.decode("#"+Models.RandCol()+ Models.RandCol()+Models.RandCol()+Models.RandCol()+Models.RandCol()+Models.RandCol()),
+        },
+        new int[]{
+            0,
+            1
+        },
+        new Rectangle((int)point.getX(),(int)point.getY(),(int)x,(int)y)
+        );
+        cube.assignRenderType(EnumRenderType.QUAD);
+        return cube;
+    }
     
     public static Model generateTerrain(Vector3D point){
         int length = 16;

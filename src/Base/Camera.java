@@ -18,7 +18,7 @@ public class Camera {
     public int zoom=1;
     public Rectangle WindowSize;
     private Handler handler;
-    public static Vector3D globalOffset = new Vector3D(0,0,128);
+    public static Vector3D globalOffset = new Vector3D(0,-Game.HEIGHT/2,128);
     
     
     public Vector3D position;

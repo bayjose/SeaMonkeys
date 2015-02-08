@@ -4,6 +4,7 @@
  */
 package Base;
 
+import Base.input.MouseInput;
 import Base.util.EnumGameState;
 import Base.util.drawImage;
 import Entity.Entity;
@@ -13,9 +14,11 @@ import Entity.Models;
 import Physics.Model;
 import Physics.RenderModels;
 import Physics.Vector3D;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.Random;
 import particles.BasicParticles;
@@ -32,6 +35,8 @@ public class Handler {
     private Font fontnormal = new Font("Arial", Font.PLAIN, 12);
     public LinkedList<BasicParticles> particle = new LinkedList<BasicParticles>();
     public RenderModels renderModels;
+    
+    public static Rectangle tankSize= new Rectangle(483, 175, 400, 460);
     
     public static Camera cam;
     public LinkedList<Entity> entities = new LinkedList<Entity>();
@@ -73,6 +78,9 @@ public class Handler {
         if(egs.equals(EnumGameState.Main)){
             for(int i=0; i<this.entities.size(); i++){
                 this.entities.get(i).tick();
+                if(this.entities.get(i).remove){
+                    this.entities.remove(i);
+                }
             }
         }
     }
@@ -90,6 +98,9 @@ public class Handler {
         
         if(egs.equals(EnumGameState.Main)){
             this.renderModels.Render(entities, g);
+            MouseInput.collision.Render(g);
+//            g.setColor(Color.red);
+//            g.drawRect(443, 140, 400, 460);
         }
     }
     

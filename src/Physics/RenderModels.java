@@ -52,7 +52,7 @@ public class RenderModels {
              for(int j=0; j<entitys.get(i).models.size(); j++){
                  if(entitys.get(i).models.get(j)!=null){
 //                     g.drawString("Position", (int)(entitys.get(i).models.get(j).offset.getX()+Camera.globalOffset.getX()), (int)(entitys.get(i).models.get(j).offset.getY()+Camera.globalOffset.getY()));
-                    entitys.get(i).models.get(j).render(g);
+                    entitys.get(i).Render(g);
                  }
              }
          }

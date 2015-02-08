@@ -87,13 +87,6 @@ public class Face {
         return new Point3D(xOffset,yOffset,zOffset);
     }
     
-    public Line2D[] calcLines(){
-        Line2D[] lines = new Line2D[3];
-        lines[0] = new Line2D.Float(p1.getX(), p1.getY(), p2.getX(), p2.getY());
-        lines[1] = new Line2D.Float(p2.getX(), p2.getY(), p3.getX(), p3.getY());
-        lines[2] = new Line2D.Float(p3.getX(), p3.getY(), p1.getX(), p1.getY());
-        return lines;
-    }
     
     public Point getPoint1(){
         return this.p1;
